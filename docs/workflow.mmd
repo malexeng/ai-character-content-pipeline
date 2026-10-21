@@ -1,0 +1,16 @@
+flowchart TD
+  IN([One seed image of an AI-generated character]):::input --> G[[Image model · style variations]]:::ai
+  G --> Q{{"Quality check<br/>resolution · sharpness · brightness · contrast"}}:::guard
+  Q -->|fail| X1[Discard]:::guard
+  Q -->|pass| SF{{"Safety check · always on"}}:::guard
+  SF -->|flagged| X2[Discard]:::guard
+  SF -->|clean| V[[Vision model · describes and tags the image]]:::ai
+  V --> C[[Text model · writes caption + hashtags]]:::ai
+  C --> OUT([Upload queue · image + caption per post]):::output
+
+  classDef input fill:#e8f1ff,stroke:#3b82f6,color:#0b2a5b,stroke-width:1.5px
+  classDef ai fill:#f1e8ff,stroke:#8b5cf6,color:#2e1065,stroke-width:1.5px
+  classDef step fill:#f4f4f5,stroke:#71717a,color:#18181b,stroke-width:1.2px
+  classDef store fill:#fff6e0,stroke:#d97706,color:#5a3300,stroke-width:1.2px
+  classDef output fill:#e7f8ee,stroke:#16a34a,color:#073b1c,stroke-width:1.5px
+  classDef guard fill:#ffecec,stroke:#dc2626,color:#5c0a0a,stroke-width:1.2px

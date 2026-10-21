@@ -1,0 +1,6 @@
+ollama
+pillow
+requests
+nudenet
+opencv-python
+numpy
